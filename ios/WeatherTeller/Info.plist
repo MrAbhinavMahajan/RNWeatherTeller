@@ -36,7 +36,11 @@
 			</dict>
 		</dict>
 		<key>NSLocationWhenInUseUsageDescription</key>
-		<string></string>
+		<string>$(PRODUCT_NAME) use your current location to show detail.</string>
+		<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+		<string>$(PRODUCT_NAME) use your current location to show detail.</string>
+		<key>NSLocationAlwaysUsageDescription</key>
+		<string>$(PRODUCT_NAME) use your current location to show detail.</string>
 		<key>UIAppFonts</key>
 		<array>
 			<string>AntDesign.ttf</string>

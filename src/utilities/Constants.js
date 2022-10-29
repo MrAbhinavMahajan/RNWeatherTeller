@@ -6,4 +6,6 @@ export const {width: screenWidth, height: screenHeight} =
 
 export const isAndroid = Platform.OS === 'android';
 
+export const isiOS = Platform.OS === 'ios';
+
 export const hasNotch = deviceInfoModule.hasNotch();
