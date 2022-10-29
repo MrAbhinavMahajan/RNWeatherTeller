@@ -9,7 +9,8 @@ import {WeatherTeller} from './components/weather/WeatherTeller';
 navigator.geolocation = require('react-native-geolocation-service');
 
 const Home = props => {
-  const {navigation} = props;
+  const {navigation, route} = props;
+  console.log({route});
   const [status, setStatus] = useState('checking');
 
   async function requestPermissions() {
