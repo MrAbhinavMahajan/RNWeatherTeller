@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Text, View} from 'react-native';
 
-const Search = ({navigation}) => {
+const SearchScreen = ({navigation}) => {
   return (
     <View>
       <Text>Search Screen</Text>
@@ -14,4 +14,4 @@ const Search = ({navigation}) => {
     </View>
   );
 };
-export default Search;
+export default SearchScreen;

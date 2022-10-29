@@ -1,26 +1,28 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
-import Home from '../screens/home/Screen';
-import Search from '../screens/search/Screen';
 import {navigationRef} from './Service';
+import SplashScreen from '../screens/splash/Screen';
+import HomeScreen from '../screens/home/Screen';
+import SearchScreen from '../screens/search/Screen';
 
 const {Navigator, Screen} = createNativeStackNavigator();
 
 const RootStack = () => (
   <NavigationContainer ref={navigationRef}>
     <Navigator
-      initialRouteName={'Home'}
+      initialRouteName={'Splash'}
       screenOptions={{
         gestureEnabled: false,
         animation: 'fade_from_bottom',
         orientation: 'portrait',
         headerShown: false,
       }}>
-      <Screen name={'Home'} component={Home} />
+      <Screen name={'Splash'} component={SplashScreen} />
+      <Screen name={'Home'} component={HomeScreen} />
       <Screen
         name={'Search'}
-        component={Search}
+        component={SearchScreen}
         options={{
           headerShown: true,
           headerTitle: 'Change City',
