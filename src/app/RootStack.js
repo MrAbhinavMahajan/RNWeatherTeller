@@ -18,7 +18,14 @@ const RootStack = () => (
         headerShown: false,
       }}>
       <Screen name={'Home'} component={Home} />
-      <Screen name={'Search'} component={Search} />
+      <Screen
+        name={'Search'}
+        component={Search}
+        options={{
+          headerShown: true,
+          headerTitle: 'Change City',
+        }}
+      />
     </Navigator>
   </NavigationContainer>
 );

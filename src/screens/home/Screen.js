@@ -1,21 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import {
-  Button,
-  PermissionsAndroid,
-  Text,
-  View,
-  ActivityIndicator,
-  Alert,
-} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import {PermissionsAndroid, Text, View, Alert} from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import {isAndroid, isiOS} from '../../utilities/Constants';
+import {GLOBAL_STYLES} from '../../utilities/GlobalStyles';
+import {Header} from './components/header/Header';
+import {WeatherTeller} from './components/weather/WeatherTeller';
 
 navigator.geolocation = require('react-native-geolocation-service');
 
-const Home = ({navigation}) => {
-  const [loading, setLoading] = useState();
-  const [status, setStatus] = useState('Checking');
+const Home = props => {
+  const {navigation} = props;
+  const [status, setStatus] = useState('checking');
 
   async function requestPermissions() {
     if (isiOS) {
@@ -76,6 +71,14 @@ const Home = ({navigation}) => {
     return () => {};
   }, [status]);
 
+  if (status === 'checking') {
+    return (
+      <View>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
+
   if (status !== 'granted') {
     return (
       <View>
@@ -87,16 +90,9 @@ const Home = ({navigation}) => {
   }
 
   return (
-    <View>
-      <Text>Home Screen</Text>
-      <Icon name="rocket" size={30} color="#900" />
-
-      <Button
-        title="Go To Search"
-        onPress={() => {
-          navigation.navigate('Search');
-        }}
-      />
+    <View style={GLOBAL_STYLES.container}>
+      <Header />
+      <WeatherTeller {...props} />
     </View>
   );
 };
