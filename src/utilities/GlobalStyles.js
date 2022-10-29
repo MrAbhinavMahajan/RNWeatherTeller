@@ -10,3 +10,5 @@ export const GLOBAL_STYLES = StyleSheet.create({
     flexDirection: 'row',
   },
 });
+
+export const horizontalGap = 10;

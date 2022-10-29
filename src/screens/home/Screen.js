@@ -12,6 +12,7 @@ const HomeScreen = props => {
   const {navigation, route} = props;
   console.log({route});
   const [status, setStatus] = useState('checking');
+  const [data, setData] = useState({});
 
   async function requestPermissions() {
     if (isiOS) {
@@ -34,6 +35,7 @@ const HomeScreen = props => {
   async function getCurrentPosition() {
     Geolocation.getCurrentPosition(
       position => {
+        setData(position);
         console.log(position);
       },
       error => {
@@ -93,7 +95,13 @@ const HomeScreen = props => {
   return (
     <View style={GLOBAL_STYLES.container}>
       <Header />
-      <WeatherTeller {...props} />
+      <WeatherTeller
+        {...props}
+        // latitude={data?.coords?.latitude}
+        // longitude={data?.coords?.longitude}
+        latitude={35}
+        longitude={139}
+      />
     </View>
   );
 };

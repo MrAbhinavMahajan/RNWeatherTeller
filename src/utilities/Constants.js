@@ -14,3 +14,15 @@ export const isiOS = Platform.OS === 'ios';
 export const hasNotch = deviceInfoModule.hasNotch();
 
 export const appThemeColor = COLORS.basic900;
+
+export let placeAddressKeys = {
+  ZIP_CODE: 'postal_code',
+  COUNTRY: 'country',
+  STATE: 'administrative_area_level_1',
+  CITY: 'administrative_area_level_2',
+  SUBURB: 'sublocality',
+  TOWN: 'sublocality_level_1',
+  AREA: 'sublocality_level_2',
+  NEAREST_ROAD: 'route',
+  STREET: 'street_address',
+};

@@ -20,14 +20,7 @@ const RootStack = () => (
       }}>
       <Screen name={'Splash'} component={SplashScreen} />
       <Screen name={'Home'} component={HomeScreen} />
-      <Screen
-        name={'Search'}
-        component={SearchScreen}
-        options={{
-          headerShown: true,
-          headerTitle: 'Change City',
-        }}
-      />
+      <Screen name={'Search'} component={SearchScreen} />
     </Navigator>
   </NavigationContainer>
 );
