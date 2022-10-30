@@ -84,6 +84,7 @@ const SearchScreen = ({navigation}) => {
           listUnderlayColor={COLORS.black}
           textInputProps={{
             color: COLORS.black,
+            placeholderTextColor: COLORS.black,
           }}
         />
       </ImageBackground>
