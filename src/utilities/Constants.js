@@ -2,8 +2,6 @@ import {Dimensions, Platform} from 'react-native';
 import deviceInfoModule from 'react-native-device-info';
 import {COLORS} from './Colors';
 
-export const api_key = '9ae2447983447457a57564703f4382ac';
-
 export const {width: screenWidth, height: screenHeight} =
   Dimensions.get('window');
 
@@ -15,7 +13,11 @@ export const hasNotch = deviceInfoModule.hasNotch();
 
 export const appThemeColor = COLORS.basic900;
 
-export let placeAddressKeys = {
+export const GOOGLE_PLACE_API_KEY = '<Places API key>';
+
+export const WEATHER_API_KEY = '9ae2447983447457a57564703f4382ac';
+
+export let PLACE_ADDRESS_KEYS = {
   ZIP_CODE: 'postal_code',
   COUNTRY: 'country',
   STATE: 'administrative_area_level_1',

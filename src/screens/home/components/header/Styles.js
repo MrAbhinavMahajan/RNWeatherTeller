@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {moderateScale} from 'react-native-size-matters';
 import {COLORS} from '../../../../utilities/Colors';
 import {appThemeColor} from '../../../../utilities/Constants';
 
@@ -29,7 +30,7 @@ export const styles = StyleSheet.create({
   },
 
   headerLabel: {
-    fontSize: 20,
+    fontSize: moderateScale(20),
     fontWeight: '500',
     color: COLORS.white,
     padding: 15,
@@ -45,7 +46,7 @@ export const styles = StyleSheet.create({
   },
 
   rightPressableLabel: {
-    fontSize: 16,
+    fontSize: moderateScale(16),
     fontWeight: '500',
     color: COLORS.lightBlue,
   },

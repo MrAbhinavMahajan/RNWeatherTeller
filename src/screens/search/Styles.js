@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {moderateScale} from 'react-native-size-matters';
 import {horizontalGap} from '../../utilities/GlobalStyles';
 
 export const styles = StyleSheet.create({
@@ -8,12 +9,12 @@ export const styles = StyleSheet.create({
     marginVertical: horizontalGap,
   },
   backPressableTitle: {
-    fontSize: 18,
+    fontSize: moderateScale(18),
     fontWeight: '700',
   },
   googleTextInput: (isEditable = true) => ({
     color: isEditable ? 'black' : '#C4C4C4',
-    fontSize: 16,
+    fontSize: moderateScale(16),
     paddingHorizontal: horizontalGap,
   }),
 });

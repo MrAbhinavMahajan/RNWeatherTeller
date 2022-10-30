@@ -1,16 +1,20 @@
-import React, {useEffect, useState} from 'react';
-import {PermissionsAndroid, Text, View, Alert} from 'react-native';
+import {useFocusEffect} from '@react-navigation/native';
+import React, {useCallback, useEffect, useState} from 'react';
+import {
+  PermissionsAndroid,
+  Text,
+  View,
+  Alert,
+  ImageBackground,
+} from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import {isAndroid, isiOS} from '../../utilities/Constants';
 import {GLOBAL_STYLES} from '../../utilities/GlobalStyles';
 import {Header} from './components/header/Header';
 import {WeatherTeller} from './components/weather/WeatherTeller';
 
-navigator.geolocation = require('react-native-geolocation-service');
-
 const HomeScreen = props => {
-  const {navigation, route} = props;
-  console.log({route});
+  const {route} = props;
   const [status, setStatus] = useState('checking');
   const [data, setData] = useState({});
 
@@ -36,7 +40,6 @@ const HomeScreen = props => {
     Geolocation.getCurrentPosition(
       position => {
         setData(position);
-        console.log(position);
       },
       error => {
         // See error code charts below.
@@ -47,32 +50,45 @@ const HomeScreen = props => {
   }
 
   useEffect(() => {
-    console.log({status});
-    if (status === 'granted') {
-      getCurrentPosition();
+    if (route?.params?.latitude && route?.params?.longitude) {
+      const {latitude, longitude} = route.params;
+      let coords = {latitude, longitude};
+      setData({coords});
     }
+  }, [route]);
 
-    if (
-      status === 'disabled' ||
-      status === 'denied' ||
-      status === 'restricted'
-    ) {
-      Alert.alert(
-        'Alert',
-        'Please grant location access to use weather teller',
-        [
-          {
-            text: 'ok',
-            onPress: () => {
-              requestPermissions();
+  useFocusEffect(
+    useCallback(() => {
+      if (
+        !route?.params?.latitude &&
+        !route?.params?.longitude &&
+        status === 'granted'
+      ) {
+        getCurrentPosition();
+      }
+
+      if (
+        status === 'disabled' ||
+        status === 'denied' ||
+        status === 'restricted'
+      ) {
+        Alert.alert(
+          'Alert',
+          'Please grant location access to use weather teller',
+          [
+            {
+              text: 'ok',
+              onPress: () => {
+                requestPermissions();
+              },
             },
-          },
-        ],
-      );
-    }
+          ],
+        );
+      }
 
-    return () => {};
-  }, [status]);
+      return () => {};
+    }, [status]),
+  );
 
   if (status === 'checking') {
     return (
@@ -86,7 +102,7 @@ const HomeScreen = props => {
     return (
       <View>
         <Text>
-          Permissions not granted, please install again and grant permissios
+          Permissions not granted, please go to settings and enable it
         </Text>
       </View>
     );
@@ -95,13 +111,17 @@ const HomeScreen = props => {
   return (
     <View style={GLOBAL_STYLES.container}>
       <Header />
-      <WeatherTeller
-        {...props}
-        // latitude={data?.coords?.latitude}
-        // longitude={data?.coords?.longitude}
-        latitude={35}
-        longitude={139}
-      />
+      <ImageBackground
+        source={{
+          uri: 'https://img.freepik.com/free-photo/sunshine-clouds-sky-during-morning-background-blue-white-pastel-heaven-soft-focus-lens-flare-sunlight-abstract-blurred-cyan-gradient-peaceful-nature-open-view-out-windows-beautiful-summer-spring_1253-1092.jpg?w=1480&t=st=1667113686~exp=1667114286~hmac=8ff828c07b3526b0bc380c1f03aca12bd80334e098bc5425005708df69c03a98',
+        }}
+        style={GLOBAL_STYLES.container}>
+        <WeatherTeller
+          {...props}
+          latitude={data?.coords?.latitude}
+          longitude={data?.coords?.longitude}
+        />
+      </ImageBackground>
     </View>
   );
 };

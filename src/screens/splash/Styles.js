@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {moderateScale} from 'react-native-size-matters';
 import {COLORS} from '../../utilities/Colors';
 import {appThemeColor} from '../../utilities/Constants';
 export const styles = StyleSheet.create({
@@ -8,5 +9,9 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  appName: {fontSize: 30, fontWeight: '900', color: COLORS.white},
+  appName: {
+    fontSize: moderateScale(30),
+    fontWeight: '900',
+    color: COLORS.white,
+  },
 });
